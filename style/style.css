@@ -1,0 +1,49 @@
+.tooltip {
+  height: auto;
+  padding: 10px;
+  background-color: #444;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.tooltip dd {
+	margin-left: 60px;
+}
+
+.tooltip dt {
+	float: left;
+}
+
+.title { 
+  width: 460px; 
+  position: fixed;
+  top: 10px;
+  right: -40px;
+  height: auto;
+  padding: 10px;
+  margin: 15px;
+  background-color: #444;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  z-index: 10;
+}
+
+.lead {
+  color: #fff;
+  margin: 10px;
+}
+
+a {
+  color: #f92672;
+  text-decoration: underline;
+}

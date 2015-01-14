@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0" />
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=eEahv86u4BULGuURD4Apxk4L"></script>
+	<title>wdshare</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+     <h3 class="title">
+        <a href="https://github.com/hjzheng/wdshare-meeting-locations" target="_blank">WDShare会议足迹</a>
+        <p class="lead" style="padding-left:100px;"> Follow me on Github <a href="https://github.com/hjzheng" target="_blank">hjzheng</a></p>
+     </h3>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+	$.getJSON("data/locations.json",function(locations){
+		// 百度地图API功能
+		var map = new BMap.Map("allmap");  // 创建Map实例
+		map.centerAndZoom("西安",13);      // 初始化地图,用城市名设置地图中心点
+		map.enableScrollWheelZoom(true);   //允许缩放
+		
+		var opts = {
+			title : "WDShare 西安交流会", // 信息窗口标题
+			enableMessage: true//设置允许信息窗发送短息
+		};
+
+		for (var i = 0; i < locations.length; i++) {
+
+			var place = locations[i];
+			var content = '<div class="tooltip">'
+		        + '<p><strong>' + place.title + '</strong></p>'
+		        + '<dl>'
+		        + '<dt>赞助商</dt><dd>' + place.name + '</dd>'
+		        + '<dt>地点</dt><dd>' + place.address + '</dd>'
+		        + '<dt>时间</dt><dd>' + place.time + '</dd>'
+		        + '</dl>'
+		        + '</div>'
+			
+			var point = new BMap.Point(place.location[0], place.location[1]);
+			var myIcon = new BMap.Icon("images/last.png", new BMap.Size(32,30));
+			var marker = new BMap.Marker(point, {icon: myIcon});  // 创建标注
+			map.addOverlay(marker);       
+			if(place.active){        // 将标注添加到地图中
+				marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+				//设置最近一次活动为地图中心并放大
+				setTimeout(function(){
+					map.centerAndZoom(new BMap.Point(place.location[0], place.location[1]), 18)
+				}, 2000);
+
+				var infoWindow = new BMap.InfoWindow(content, opts);  // 创建信息窗口对象 
+				map.openInfoWindow(infoWindow,point); 
+			}
+
+			addClickHandler(content, marker, opts);	
+		};
+
+		function addClickHandler(content, marker, opts){
+			marker.addEventListener("click",function(e){
+					openInfo(content, e, opts)
+				}
+			);
+		}
+		function openInfo(content, e, opts){
+			var p = e.target;
+			var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+			var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象 
+			map.openInfoWindow(infoWindow,point); //开启信息窗口
+		}
+
+  	});
+	
+</script>
