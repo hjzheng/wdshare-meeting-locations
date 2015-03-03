@@ -60,7 +60,7 @@
 			}
 
 			addClickHandler(content, marker, opts);	
-		};
+		}
 
 		function addClickHandler(content, marker, opts){
 			marker.addEventListener("click",function(e){
@@ -68,6 +68,7 @@
 				}
 			);
 		}
+
 		function openInfo(content, e, opts){
 			var p = e.target;
 			var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
