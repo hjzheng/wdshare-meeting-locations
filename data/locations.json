@@ -40,8 +40,17 @@
             "name": "未来国际",
             "address": "陕西省西安市茶张路一号省信息化中心19楼，大会议室",
             "location": [108.886012,34.220133],
-            "active": true,
+            "active": false,
             "time": "2015-3-29   14:00 -- 18:00",
+            "description": ""
+        },
+        {
+            "title": "WDShare【修炼JS：带你入门、带你飞】 第6期",
+            "name": "智讯科技",
+            "address": "西安雁塔南路2216号曲江国际大厦21层",
+            "location": [108.96899,34.198429],
+            "active": true,
+            "time": "2015-5-31   14:00 -- 18:00",
             "description": ""
         }
 ]
